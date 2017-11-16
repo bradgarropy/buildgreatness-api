@@ -4,7 +4,8 @@
     "description": "Build Greatness REST API",
     "main": "server/server.js",
     "scripts": {
-        "start": "node server/server.js"
+        "start": "node server/server.js",
+        "lint": "eslint --ext .js ."
     },
     "repository": {
         "type": "git",
