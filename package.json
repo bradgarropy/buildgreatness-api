@@ -1,10 +1,10 @@
 {
     "name": "buildgreatness-api",
     "version": "0.0.1",
-    "description": "",
-    "main": "server.js",
+    "description": "Build Greatness REST API",
+    "main": "server/server.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "node server/server.js"
     },
     "repository": {
         "type": "git",
@@ -15,5 +15,12 @@
     "bugs": {
         "url": "https://github.com/bradgarropy/buildgreatness-api/issues"
     },
-    "homepage": "https://github.com/bradgarropy/buildgreatness-api#readme"
+    "homepage": "https://github.com/bradgarropy/buildgreatness-api#readme",
+    "devDependencies": {
+        "dotenv": "^4.0.0",
+        "eslint": "^4.11.0"
+    },
+    "dependencies": {
+        "express": "^4.16.2"
+    }
 }
