@@ -1,6 +1,5 @@
 const express = require("express")
 const dotenv = require("dotenv")
-const cors = require("cors")
 
 
 // create application
@@ -9,10 +8,6 @@ const app = express()
 
 // load env
 dotenv.config()
-
-
-// middleware
-app.use(cors())
 
 
 // app settings
