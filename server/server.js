@@ -5,7 +5,7 @@ const dotenv = require("dotenv")
 // create application
 const app = express()
 
-fdfsda
+
 // load env
 dotenv.config()
 
