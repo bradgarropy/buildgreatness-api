@@ -17,12 +17,12 @@
         "url": "https://github.com/bradgarropy/buildgreatness-api/issues"
     },
     "homepage": "https://github.com/bradgarropy/buildgreatness-api#readme",
-    "devDependencies": {
-        "eslint": "^4.11.0"
-    },
     "dependencies": {
         "cors": "^2.8.4",
         "dotenv": "^4.0.0",
         "express": "^4.16.2"
+    },
+    "devDependencies": {
+        "eslint": "^4.11.0"
     }
 }
