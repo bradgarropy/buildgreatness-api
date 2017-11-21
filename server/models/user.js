@@ -51,4 +51,4 @@ const User = mongoose.model("User", userSchema)
 
 
 // export model
-exports = User
+module.exports = User

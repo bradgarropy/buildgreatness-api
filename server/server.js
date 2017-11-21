@@ -1,28 +1,29 @@
 const express = require("express")
 const dotenv = require("dotenv")
-
-
-// create application
-const app = express()
+const bodyparser = require("body-parser")
+const logger = require("./middleware/logger")
+const users = require("./routes/users")
 
 
 // load env
 dotenv.config()
 
 
+// create application
+const app = express()
+
+
 // app settings
 app.set("json spaces", 4)
 
 
-// all routes
-app.get("*", (request, response) => {
+// middleware
+app.use(bodyparser.json())
+app.use(logger)
 
-    response.json({
-        first_name: "Brad",
-        last_name: "Garropy",
-    })
 
-})
+// routes
+app.use("/api/users", users)
 
 
 // start application
