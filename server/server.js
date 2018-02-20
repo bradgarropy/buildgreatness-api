@@ -1,6 +1,7 @@
 const express = require("express")
 const dotenv = require("dotenv")
 const bodyparser = require("body-parser")
+const path = require("path")
 const logger = require("./middleware/logger")
 const users = require("./routes/users")
 
@@ -23,6 +24,7 @@ app.use(logger)
 
 
 // routes
+app.use(express.static(path.join(__dirname, "public")))
 app.use("/users", users)
 
 
