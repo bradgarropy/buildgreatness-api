@@ -4,10 +4,7 @@
         "es6": true,
         "node": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
-    ],
+    "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -15,9 +12,6 @@
         "ecmaVersion": 6,
         "sourceType": "module"
     },
-    "plugins": [
-        "react"
-    ],
     "rules": {
         "comma-dangle": ["error", "always-multiline"],
         "comma-spacing": ["error", {"before": false, "after": true}],
