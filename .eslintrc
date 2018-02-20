@@ -1,17 +1,31 @@
 {
     "env": {
+        "browser": true,
+        "es6": true,
         "node": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
     "parserOptions": {
-        "ecmaVersion": 6
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 6,
+        "sourceType": "module"
     },
+    "plugins": [
+        "react"
+    ],
     "rules": {
         "comma-dangle": ["error", "always-multiline"],
         "comma-spacing": ["error", {"before": false, "after": true}],
         "comma-style": ["error", "last"],
         "eol-last": ["error", "always"],
-        "no-console": "off",
+        "eqeqeq": ["error", "always"],
+        "indent": ["error", 4],
+        "no-mixed-spaces-and-tabs": ["error"],
         "semi": ["error", "never"],
         "semi-spacing": ["error", {"before": false, "after": true}],
         "semi-style": ["error", "last"],
