@@ -1,21 +1,49 @@
 const express = require("express")
 
 
-// create router
+// router
 const router = express.Router()
 
 
-// CREATE
+// create
+router.post("/", (request, response) => {
+
+    response.send("create")
+
+})
 
 
-// READ
+// read one
+router.get("/:id", (request, response) => {
+
+    response.send("read one")
+
+})
 
 
-// UPDATE
+// read all
+router.get("/", (request, response) => {
+
+    response.send("read all")
+
+})
 
 
-// DESTROY
+// update
+router.patch("/:id", (request, response) => {
+
+    response.send("update")
+
+})
 
 
-// export router
+// delete
+router.delete("/:id", (request, response) => {
+
+    response.send("delete")
+
+})
+
+
+// export
 module.exports = router
