@@ -5,22 +5,22 @@ const mongoose = require("mongoose")
 const userSchema = mongoose.Schema({
     first_name: {
         type: String,
-        required: true,
+        required: [true, "First name is required."],
         unique: false,
     },
     last_name: {
         type: String,
-        required: true,
+        required: [true, "Last name is required."],
         unique: false,
     },
     email: {
         type: String,
-        required: true,
+        required: [true, "Email is required."],
         unique: true,
     },
     password: {
         type: String,
-        required: true,
+        required: [true, "Password is required."],
         unique: false,
     },
     auth_token: {

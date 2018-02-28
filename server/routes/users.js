@@ -1,4 +1,5 @@
 const express = require("express")
+const User = require("../models/user")
 
 
 // router
@@ -8,7 +9,14 @@ const router = express.Router()
 // create
 router.post("/", (request, response) => {
 
-    response.send("create")
+    User.create(request.body)
+        .then(document => {
+            response.send(document)
+        })
+        .catch(error => {
+            response.status(400)
+            response.send(error)
+        })
 
 })
 

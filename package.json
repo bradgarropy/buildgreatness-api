@@ -5,7 +5,7 @@
     "main": "server/server.js",
     "scripts": {
         "start": "node server/server.js",
-        "lint": "eslint --ext .js .",
+        "lint": "eslint .",
         "dev": "nodemon"
     },
     "repository": {
@@ -20,6 +20,7 @@
     "homepage": "https://github.com/bradgarropy/buildgreatness-api#readme",
     "dependencies": {
         "body-parser": "^1.18.2",
+        "cors": "^2.8.4",
         "dotenv": "^5.0.0",
         "express": "^4.16.2",
         "moment": "^2.20.1",
