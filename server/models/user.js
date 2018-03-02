@@ -23,26 +23,6 @@ const userSchema = mongoose.Schema({
         required: [true, "Password is required."],
         unique: false,
     },
-    auth_token: {
-        type: String,
-        required: false,
-        unique: true,
-    },
-    auth_token_exp: {
-        type: Date,
-        required: false,
-        unique: false,
-    },
-    reset_token: {
-        type: String,
-        required: false,
-        unique: false,
-    },
-    reset_token_exp: {
-        type: Date,
-        required: false,
-        unique: false,
-    },
 })
 
 
