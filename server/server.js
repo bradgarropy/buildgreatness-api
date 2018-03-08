@@ -6,8 +6,12 @@ const path = require("path")
 const mongoose = require("mongoose")
 
 // routes
-const logger = require("./middleware/logger")
 const users = require("./routes/users")
+
+
+// middleware
+const logger = require("./middleware/logger")
+const errors = require("./middleware/errors")
 
 
 // environment
@@ -35,6 +39,10 @@ app.use(logger)
 // routes
 app.use(express.static(path.join(__dirname, "public")))
 app.use("/users", users)
+
+
+// errors
+app.use(errors)
 
 
 // listen
