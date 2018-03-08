@@ -1,5 +1,7 @@
 const express = require("express")
 const User = require("../models/user")
+const {check} = require("express-validator/check")
+const validate = require("../middleware/validate")
 
 
 // router
@@ -7,48 +9,69 @@ const router = express.Router()
 
 
 // create
-router.post("/", (request, response) => {
+router.post(
+    "/",
+    [
+        check("first_name").not().isEmpty().withMessage("First name is required."),
+        check("last_name").not().isEmpty().withMessage("Last name is required."),
+        check("email").not().isEmpty().withMessage("Email is required."),
+        check("email").isEmail().withMessage("Invalid email."),
+        check("password").not().isEmpty().withMessage("Password is required."),
+        check("confirmation").not().isEmpty().withMessage("Password confirmation is required."),
+        check("confirmation").custom((value, {req}) => value === req.body.password).withMessage("Passwords must match."),
+    ],
+    validate(),
+    (req, res, next) => {
 
-    User.create(request.body)
-        .then(document => {
-            response.send(document)
-        })
-        .catch(error => {
-            response.status(400)
-            response.send(error)
-        })
+        User.create(req.body)
+            .then(document => {
+                res.send(document)
+            })
+            .catch(error => {
 
-})
+                if(error.name === "BulkWriteError") {
+
+                    res.status(400)
+                    res.send({email: "Email already in use."})
+
+                }
+
+                next(error)
+
+            })
+
+    }
+)
 
 
 // read one
-router.get("/:id", (request, response) => {
+router.get("/:id", (req, res) => {
 
-    response.send("read one")
+    res.send("read one")
 
 })
 
 
 // read all
-router.get("/", (request, response) => {
+router.get("/", (req, res) => {
 
-    response.send("read all")
+    res.send("read all")
 
 })
 
 
 // update
-router.patch("/:id", (request, response) => {
+router.patch("/:id", (req, res) => {
 
-    response.send("update")
+    res.send("update")
 
 })
 
 
 // delete
-router.delete("/:id", (request, response) => {
+router.delete("/:id", (req, res) => {
 
-    response.send("delete")
+    res.send("delete")
 
 })
 
