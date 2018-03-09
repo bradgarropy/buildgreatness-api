@@ -2,6 +2,7 @@ const express = require("express")
 const User = require("../models/user")
 const {check} = require("express-validator/check")
 const validate = require("../middleware/validate")
+const authenticate = require("../middleware/authenticate")
 
 
 // router
@@ -26,6 +27,7 @@ router.post(
         User.create(req.body)
             .then(document => {
                 res.send(document)
+                return
             })
             .catch(error => {
 
@@ -33,10 +35,12 @@ router.post(
 
                     res.status(400)
                     res.send({email: "Email already in use."})
+                    return
 
                 }
 
                 next(error)
+                return
 
             })
 
@@ -48,6 +52,7 @@ router.post(
 router.get("/:id", (req, res) => {
 
     res.send("read one")
+    return
 
 })
 
@@ -56,6 +61,7 @@ router.get("/:id", (req, res) => {
 router.get("/", (req, res) => {
 
     res.send("read all")
+    return
 
 })
 
@@ -64,6 +70,7 @@ router.get("/", (req, res) => {
 router.patch("/:id", (req, res) => {
 
     res.send("update")
+    return
 
 })
 
@@ -72,8 +79,31 @@ router.patch("/:id", (req, res) => {
 router.delete("/:id", (req, res) => {
 
     res.send("delete")
+    return
 
 })
+
+
+// login
+router.post(
+    "/login",
+    [
+        check("email").not().isEmpty().withMessage("Email is required."),
+        check("email").isEmail().withMessage("Invalid email."),
+        check("password").not().isEmpty().withMessage("Password is required."),
+    ],
+    validate(),
+    authenticate.user(),
+    (req, res) => {
+
+        // TODO: generate jwt
+
+        res.send("Logged in!")
+        return
+
+    }
+
+)
 
 
 // export

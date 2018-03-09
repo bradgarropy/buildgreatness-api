@@ -17,10 +17,12 @@ function validate() {
 
             res.status(400)
             res.send(errors)
+            return
 
         }
 
         next()
+        return
 
     }
 
