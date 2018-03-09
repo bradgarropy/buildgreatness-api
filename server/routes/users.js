@@ -101,12 +101,11 @@ router.post(
     authenticate.user(),
     (req, res) => {
 
-        const {first_name, last_name, email, ...rest} = req.user
-
         const payload = {
-            first_name,
-            last_name,
-            email,
+            id: req.user._id,
+            first_name: req.user.first_name,
+            last_name: req.user.last_name,
+            email: req.user.email,
         }
 
         const token = jwt.sign(payload, process.env.SECRET)
