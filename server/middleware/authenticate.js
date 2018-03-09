@@ -23,6 +23,7 @@ function user() {
                     return
                 }
 
+                req.user = user
                 next()
                 return
 
@@ -41,7 +42,7 @@ function user() {
 
 function token() {
 
-    const middleware = function(req, res, next) {
+    const middleware = function() {
 
     }
 

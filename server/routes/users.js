@@ -1,6 +1,11 @@
 const express = require("express")
-const User = require("../models/user")
 const {check} = require("express-validator/check")
+const jwt = require("jsonwebtoken")
+
+// models
+const User = require("../models/user")
+
+// middleware
 const validate = require("../middleware/validate")
 const authenticate = require("../middleware/authenticate")
 
@@ -96,9 +101,17 @@ router.post(
     authenticate.user(),
     (req, res) => {
 
-        // TODO: generate jwt
+        const {first_name, last_name, email, ...rest} = req.user
 
-        res.send("Logged in!")
+        const payload = {
+            first_name,
+            last_name,
+            email,
+        }
+
+        const token = jwt.sign(payload, process.env.SECRET)
+
+        res.send({token})
         return
 
     }
