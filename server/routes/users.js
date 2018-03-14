@@ -101,6 +101,8 @@ router.post(
     authenticate.user(),
     (req, res) => {
 
+        console.log(`Login: ${req.user.email}`)
+
         const payload = {
             id: req.user._id,
             first_name: req.user.first_name,
