@@ -23,7 +23,10 @@ router.post(
     authenticate.token(),
     (req, res, next) => {
 
-        Measurement.create(req.body)
+        let measurement = req.body
+        measurement.user_id = req.user.id
+
+        Measurement.create(measurement)
             .then(document => {
 
                 res.send(document)
