@@ -54,8 +54,33 @@ router.post(
             })
 
     }
+
 )
 
+
+// read
+router.get(
+    "/",
+    authenticate.token(),
+    (req, res, next) => {
+
+        Measurement.find()
+            .then((documents) => {
+
+                res.send(documents)
+                return
+
+            })
+            .catch((error) => {
+
+                next(error)
+                return
+
+            })
+
+    }
+
+)
 
 // export
 module.exports = router

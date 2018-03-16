@@ -4,22 +4,22 @@ const mongoose = require("mongoose")
 // define schema
 const measurementSchema = mongoose.Schema({
     bicep: {
-        type: mongoose.Schema.Types.Decimal128,
+        type: Number,
         required: false,
         unique: false,
     },
     body_fat: {
-        type: mongoose.Schema.Types.Decimal128,
+        type: Number,
         required: false,
         unique: false,
     },
     calf: {
-        type: mongoose.Schema.Types.Decimal128,
+        type: Number,
         required: false,
         unique: false,
     },
     chest: {
-        type: mongoose.Schema.Types.Decimal128,
+        type: Number,
         required: false,
         unique: false,
     },
@@ -29,12 +29,12 @@ const measurementSchema = mongoose.Schema({
         unique: false,
     },
     quad: {
-        type: mongoose.Schema.Types.Decimal128,
+        type: Number,
         required: false,
         unique: false,
     },
     shoulder: {
-        type: mongoose.Schema.Types.Decimal128,
+        type: Number,
         required: false,
         unique: false,
     },
@@ -44,12 +44,12 @@ const measurementSchema = mongoose.Schema({
         unique: false,
     },
     waist: {
-        type: mongoose.Schema.Types.Decimal128,
+        type: Number,
         required: false,
         unique: false,
     },
     weight: {
-        type: mongoose.Schema.Types.Decimal128,
+        type: Number,
         required: false,
         unique: false,
     },
