@@ -13,11 +13,24 @@ const authenticate = require("../middleware/authenticate")
 const router = express.Router()
 
 
+const validateMeasurements = function(value, {req}) {
+
+    let {_id, __v, user_id, date, ...measurements} = Measurement.schema.paths
+    measurements = Object.keys(measurements)
+
+    const keys = Object.keys(req.body)
+
+    return measurements.some((measurement) => keys.includes(measurement))
+
+}
+
+
 // create
 router.post(
     "/",
     [
         check("date").not().isEmpty().withMessage("Date is required."),
+        check("weight").custom(validateMeasurements).withMessage("At least one measurement is required."),
     ],
     validate(),
     authenticate.token(),
