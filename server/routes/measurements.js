@@ -123,21 +123,12 @@ router.patch(
             _id: req.params.id,
             user_id: req.user.id,
         }
+        const updates = req.body
 
         Measurement.findOne(query)
             .then((document) => {
 
-                const data = req.body
-
-                Object.keys(data).forEach((key) => {
-
-                    const value = !data[key]
-                        ? undefined
-                        : data[key]
-
-                    document[key] = value
-
-                })
+                Object.assign(document, updates)
 
                 document.save()
                     .then((document) => {
@@ -164,7 +155,7 @@ router.patch(
 router.put(
     "/:id",
     authenticate.token(),
-    (req, res, next) => {
+    (req, res) => {
 
         res.send("put!")
 
