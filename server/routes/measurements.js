@@ -58,13 +58,13 @@ router.post(
 )
 
 
-// read
+// read all
 router.get(
     "/",
     authenticate.token(),
     (req, res, next) => {
 
-        Measurement.find()
+        Measurement.find({user_id: req.user.id})
             .then((documents) => {
 
                 res.send(documents)
@@ -81,6 +81,130 @@ router.get(
     }
 
 )
+
+
+// read one
+router.get(
+    "/:id",
+    authenticate.token(),
+    (req, res, next) => {
+
+        const query = {
+            _id: req.params.id,
+            user_id: req.user.id,
+        }
+
+        Measurement.findOne(query)
+            .then((document) => {
+
+                res.send(document)
+                return
+
+            })
+            .catch((error) => {
+
+                next(error)
+                return
+
+            })
+
+    }
+
+)
+
+
+// update
+router.patch(
+    "/:id",
+    authenticate.token(),
+    (req, res, next) => {
+
+        const query = {
+            _id: req.params.id,
+            user_id: req.user.id,
+        }
+
+        Measurement.findOne(query)
+            .then((document) => {
+
+                const data = req.body
+
+                Object.keys(data).forEach((key) => {
+
+                    const value = !data[key]
+                        ? undefined
+                        : data[key]
+
+                    document[key] = value
+
+                })
+
+                document.save()
+                    .then((document) => {
+
+                        res.send(document)
+                        return
+
+                    })
+
+            })
+            .catch((error) => {
+
+                next(error)
+                return
+
+            })
+
+    }
+
+)
+
+
+// replace
+router.put(
+    "/:id",
+    authenticate.token(),
+    (req, res, next) => {
+
+        res.send("put!")
+
+    }
+)
+
+
+// delete
+router.delete(
+    "/:id",
+    authenticate.token(),
+    (req, res, next) => {
+
+        const query = {
+            _id: req.params.id,
+            user_id: req.user.id,
+        }
+
+        Measurement.findOneAndRemove(query)
+            .then((document) => {
+
+                console.log(document)
+
+                res.send(document)
+                return
+
+            })
+            .catch((error) => {
+
+                console.log(error)
+
+                next(error)
+                return
+
+            })
+
+    }
+
+)
+
 
 // export
 module.exports = router
