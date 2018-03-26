@@ -2,7 +2,7 @@ const express = require("express")
 const {check} = require("express-validator/check")
 
 // models
-const Measurement = require("../models/measurement")
+const Food = require("../models/food")
 
 // middleware
 const validate = require("../middleware/validate")
@@ -13,33 +13,23 @@ const authenticate = require("../middleware/authenticate")
 const router = express.Router()
 
 
-const validateMeasurements = function(value, {req}) {
-
-    let {_id, __v, user_id, date, ...measurements} = Measurement.schema.paths
-    measurements = Object.keys(measurements)
-
-    const keys = Object.keys(req.body)
-
-    return measurements.some((measurement) => keys.includes(measurement))
-
-}
-
-
 // create
 router.post(
     "/",
     [
-        check("date").not().isEmpty().withMessage("Date is required."),
-        check("weight").custom(validateMeasurements).withMessage("At least one measurement is required."),
+        check("name").not().isEmpty().withMessage("Name is required."),
+        check("carbs").not().isEmpty().withMessage("Carbs are required."),
+        check("fat").not().isEmpty().withMessage("Fat is required."),
+        check("protein").not().isEmpty().withMessage("Protein is required."),
     ],
     validate(),
     authenticate.token(),
     (req, res, next) => {
 
-        let measurement = req.body
-        measurement.user_id = req.user.id
+        let food = req.body
+        food.user_id = req.user.id
 
-        Measurement.create(measurement)
+        Food.create(food)
             .then(document => {
 
                 res.send(document)
@@ -64,7 +54,7 @@ router.get(
     authenticate.token(),
     (req, res, next) => {
 
-        Measurement.find({user_id: req.user.id})
+        Food.find({user_id: req.user.id})
             .then((documents) => {
 
                 res.send(documents)
@@ -94,7 +84,7 @@ router.get(
             user_id: req.user.id,
         }
 
-        Measurement.findOne(query)
+        Food.findOne(query)
             .then((document) => {
 
                 res.send(document)
@@ -125,7 +115,7 @@ router.patch(
         }
         const updates = req.body
 
-        Measurement.findOne(query)
+        Food.findOne(query)
             .then((document) => {
 
                 Object.assign(document, updates)
@@ -162,7 +152,7 @@ router.delete(
             user_id: req.user.id,
         }
 
-        Measurement.findOneAndRemove(query)
+        Food.findOneAndRemove(query)
             .then((document) => {
 
                 res.send(document)
