@@ -18,6 +18,7 @@ router.post(
     "/",
     [
         check("food_id").not().isEmpty().withMessage("Food is required."),
+        check("name").not().isEmpty().withMessage("Name is required."),
         check("quantity").not().isEmpty().withMessage("Quantity is required."),
     ],
     validate(),
