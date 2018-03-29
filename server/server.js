@@ -9,6 +9,7 @@ const mongoose = require("mongoose")
 const users = require("./routes/users")
 const measurements = require("./routes/measurements")
 const food = require("./routes/food")
+const meals = require("./routes/meals")
 
 
 // middleware
@@ -43,6 +44,7 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use("/users", users)
 app.use("/measurements", measurements)
 app.use("/food", food)
+app.use("/meals", meals)
 
 
 // errors
