@@ -11,7 +11,6 @@ const measurements = require("./routes/measurements")
 const food = require("./routes/food")
 const meals = require("./routes/meals")
 
-
 // middleware
 const logger = require("./middleware/logger")
 const errors = require("./middleware/errors")

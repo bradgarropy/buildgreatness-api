@@ -1,7 +1,10 @@
 const mongoose = require("mongoose")
+const plugins = require("../plugins/mongoose")
 
-// middleware
-const {deleteEmptyProperties} = require("../middleware/mongoose")
+
+// plugins
+mongoose.plugin(plugins.cleanJSON)
+mongoose.plugin(plugins.deleteEmptyProperties)
 
 
 // define schema
@@ -31,6 +34,16 @@ const foodSchema = mongoose.Schema({
         required: [true, "Protein is required."],
         unique: false,
     },
+    serving_size: {
+        type: Number,
+        required: false,
+        unique: false,
+    },
+    servings_per_container: {
+        type: Number,
+        required: false,
+        unique: false,
+    },
     sodium: {
         type: Number,
         required: false,
@@ -44,6 +57,7 @@ const foodSchema = mongoose.Schema({
 })
 
 
+// virtuals
 foodSchema.virtual("calories")
     .get(function() {
 
@@ -58,17 +72,7 @@ foodSchema.virtual("calories")
     })
 
 
-foodSchema.pre("save", function(next) {
-
-    deleteEmptyProperties(this)
-
-    next()
-    return
-
-})
-
-
-// create model
+// model
 const Food = mongoose.model("Food", foodSchema)
 
 

@@ -1,7 +1,10 @@
 const mongoose = require("mongoose")
+const plugins = require("../plugins/mongoose")
 
-// middleware
-const {deleteEmptyProperties} = require("../middleware/mongoose")
+
+// plugins
+mongoose.plugin(plugins.cleanJSON)
+mongoose.plugin(plugins.deleteEmptyProperties)
 
 
 // define schema
@@ -56,16 +59,6 @@ const measurementSchema = mongoose.Schema({
         required: false,
         unique: false,
     },
-})
-
-
-measurementSchema.pre("save", function(next) {
-
-    deleteEmptyProperties(this)
-
-    next()
-    return
-
 })
 
 
