@@ -7,6 +7,7 @@ const mongoose = require("mongoose")
 
 // routes
 const users = require("./routes/users")
+const feedback = require("./routes/feedback")
 const measurements = require("./routes/measurements")
 const food = require("./routes/food")
 const meals = require("./routes/meals")
@@ -41,6 +42,7 @@ app.use(logger)
 // routes
 app.use(express.static(path.join(__dirname, "public")))
 app.use("/users", users)
+app.use("/feedback", feedback)
 app.use("/measurements", measurements)
 app.use("/food", food)
 app.use("/meals", meals)
