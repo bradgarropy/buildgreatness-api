@@ -25,7 +25,7 @@ router.post(
 
         const from = req.user.email
         const to = "bradgarropy@gmail.com"
-        const subject = `Boilerplate - Feedback from ${req.user.first_name} ${req.user.last_name}`
+        const subject = `Build Greatness - Feedback from ${req.user.first_name} ${req.user.last_name}`
         const feedback = req.body.feedback
 
         email.send(from, to, subject, feedback)
