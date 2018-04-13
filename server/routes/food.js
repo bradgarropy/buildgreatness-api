@@ -55,13 +55,13 @@ router.get(
     (req, res, next) => {
 
         Food.find({user_id: req.user.id})
-            .then((documents) => {
+            .then(documents => {
 
                 res.send(documents)
                 return
 
             })
-            .catch((error) => {
+            .catch(error => {
 
                 next(error)
                 return
@@ -85,13 +85,13 @@ router.get(
         }
 
         Food.findOne(query)
-            .then((document) => {
+            .then(document => {
 
                 res.send(document)
                 return
 
             })
-            .catch((error) => {
+            .catch(error => {
 
                 next(error)
                 return
@@ -116,12 +116,12 @@ router.patch(
         const updates = req.body
 
         Food.findOne(query)
-            .then((document) => {
+            .then(document => {
 
                 Object.assign(document, updates)
 
                 document.save()
-                    .then((document) => {
+                    .then(document => {
 
                         res.send(document)
                         return
@@ -129,7 +129,7 @@ router.patch(
                     })
 
             })
-            .catch((error) => {
+            .catch(error => {
 
                 next(error)
                 return
@@ -153,13 +153,13 @@ router.delete(
         }
 
         Food.findOneAndRemove(query)
-            .then((document) => {
+            .then(document => {
 
                 res.send(document)
                 return
 
             })
-            .catch((error) => {
+            .catch(error => {
 
                 next(error)
                 return

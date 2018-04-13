@@ -20,7 +20,7 @@ const validateMeasurements = function(value, {req}) {
 
     const keys = Object.keys(req.body)
 
-    return measurements.some((measurement) => keys.includes(measurement))
+    return measurements.some(measurement => keys.includes(measurement))
 
 }
 
@@ -65,13 +65,13 @@ router.get(
     (req, res, next) => {
 
         Measurement.find({user_id: req.user.id})
-            .then((documents) => {
+            .then(documents => {
 
                 res.send(documents)
                 return
 
             })
-            .catch((error) => {
+            .catch(error => {
 
                 next(error)
                 return
@@ -95,13 +95,13 @@ router.get(
         }
 
         Measurement.findOne(query)
-            .then((document) => {
+            .then(document => {
 
                 res.send(document)
                 return
 
             })
-            .catch((error) => {
+            .catch(error => {
 
                 next(error)
                 return
@@ -126,12 +126,12 @@ router.patch(
         const updates = req.body
 
         Measurement.findOne(query)
-            .then((document) => {
+            .then(document => {
 
                 Object.assign(document, updates)
 
                 document.save()
-                    .then((document) => {
+                    .then(document => {
 
                         res.send(document)
                         return
@@ -139,7 +139,7 @@ router.patch(
                     })
 
             })
-            .catch((error) => {
+            .catch(error => {
 
                 next(error)
                 return
@@ -163,13 +163,13 @@ router.delete(
         }
 
         Measurement.findOneAndRemove(query)
-            .then((document) => {
+            .then(document => {
 
                 res.send(document)
                 return
 
             })
-            .catch((error) => {
+            .catch(error => {
 
                 next(error)
                 return
