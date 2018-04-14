@@ -32,7 +32,7 @@ router.post(
         Food.create(food)
             .then(document => {
 
-                res.send(document)
+                res.json(document)
                 return
 
             })
@@ -57,7 +57,7 @@ router.get(
         Food.find({user_id: req.user.id})
             .then(documents => {
 
-                res.send(documents)
+                res.json(documents)
                 return
 
             })
@@ -87,7 +87,7 @@ router.get(
         Food.findOne(query)
             .then(document => {
 
-                res.send(document)
+                res.json(document)
                 return
 
             })
@@ -123,7 +123,7 @@ router.patch(
                 document.save()
                     .then(document => {
 
-                        res.send(document)
+                        res.json(document)
                         return
 
                     })
@@ -155,7 +155,7 @@ router.delete(
         Food.findOneAndRemove(query)
             .then(document => {
 
-                res.send(document)
+                res.json(document)
                 return
 
             })

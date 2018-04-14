@@ -31,7 +31,7 @@ router.post(
         Meal.create(meal)
             .then(document => {
 
-                res.send(document)
+                res.json(document)
                 return
 
             })
@@ -56,7 +56,7 @@ router.get(
         Meal.find({user_id: req.user.id})
             .then(documents => {
 
-                res.send(documents)
+                res.json(documents)
                 return
 
             })
@@ -86,7 +86,7 @@ router.get(
         Meal.findOne(query)
             .then(document => {
 
-                res.send(document)
+                res.json(document)
                 return
 
             })
@@ -122,7 +122,7 @@ router.patch(
                 document.save()
                     .then(document => {
 
-                        res.send(document)
+                        res.json(document)
                         return
 
                     })
@@ -154,7 +154,7 @@ router.delete(
         Meal.findOneAndRemove(query)
             .then(document => {
 
-                res.send(document)
+                res.json(document)
                 return
 
             })

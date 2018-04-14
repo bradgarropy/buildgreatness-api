@@ -42,7 +42,7 @@ router.post(
         Measurement.create(measurement)
             .then(document => {
 
-                res.send(document)
+                res.json(document)
                 return
 
             })
@@ -67,7 +67,7 @@ router.get(
         Measurement.find({user_id: req.user.id})
             .then(documents => {
 
-                res.send(documents)
+                res.json(documents)
                 return
 
             })
@@ -97,7 +97,7 @@ router.get(
         Measurement.findOne(query)
             .then(document => {
 
-                res.send(document)
+                res.json(document)
                 return
 
             })
@@ -133,7 +133,7 @@ router.patch(
                 document.save()
                     .then(document => {
 
-                        res.send(document)
+                        res.json(document)
                         return
 
                     })
@@ -165,7 +165,7 @@ router.delete(
         Measurement.findOneAndRemove(query)
             .then(document => {
 
-                res.send(document)
+                res.json(document)
                 return
 
             })
